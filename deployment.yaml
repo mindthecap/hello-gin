@@ -20,6 +20,8 @@ spec:
         - name: hello-gin
           image: hello-gin
           env:
+            - name: USERNAME
+              value: world
             - name: MY_POD_NAME
               valueFrom:
                 fieldRef:
