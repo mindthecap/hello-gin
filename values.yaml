@@ -43,15 +43,14 @@ ingress:
 
   hosts:
     - host: hello-foobar.codemowers.ee
-      http:
-        paths:
-        - pathType: Prefix
-          path: "/api/v1/gin"
-          backend:
-            service:
-              name: hello-gin
-              port:
-                name: http
+      paths:
+      - pathType: Prefix
+        path: "/api/v1/gin"
+        backend:
+          service:
+            name: hello-gin
+            port:
+              name: http
   tls:
     - hosts:
       - "*.codemowers.ee"
