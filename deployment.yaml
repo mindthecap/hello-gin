@@ -15,7 +15,7 @@ spec:
     spec:
       enableServiceLinks: false
       imagePullSecrets:
-        - name: regcred
+        - name: imgcred
       containers:
         - name: hello-gin
           image: hello-gin
