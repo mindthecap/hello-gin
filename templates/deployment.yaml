@@ -17,10 +17,8 @@ spec:
       labels:
         {{- include "hello-gin.selectorLabels" . | nindent 8 }}
     spec:
-      {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+        - name: imgcred
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
