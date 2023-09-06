@@ -41,11 +41,11 @@ spec:
               name: metrics
           livenessProbe:
             httpGet:
-              path: /
+              path: "/api/v1/gin"
               port: http
           readinessProbe:
             httpGet:
-              path: /
+              path: "/api/v1/gin"
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
