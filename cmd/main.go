@@ -10,7 +10,7 @@ import (
 func main() {
 	router := gin.Default()
 
-	metricsRouter := gin.New()
+	metricsRouter := gin.Default()
 
 	metrics := ginmetrics.GetMonitor()
 	metrics.SetMetricPath("/metrics")
