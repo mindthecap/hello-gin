@@ -5,6 +5,7 @@ metadata:
   labels:
     {{- include "hello-gin.labels" . | nindent 4 }}
 spec:
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       {{- include "hello-gin.selectorLabels" . | nindent 6 }}
