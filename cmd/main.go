@@ -10,13 +10,21 @@ import (
 func main() {
 	router := gin.Default()
 
+	metricsRouter := gin.New()
+
 	metrics := ginmetrics.GetMonitor()
 	metrics.SetMetricPath("/metrics")
-	metrics.Use(router)
+	metrics.Use(metricsRouter)
 
 	router.GET("/api/v1/gin", func(c *gin.Context) {
 		c.String(http.StatusOK, "Hello " + os.Getenv("USERNAME") + " from " + os.Getenv("MY_POD_NAME"))
 	})
 
-	router.Run(":8000")
+	// Run the main router on port 8000
+	go func() {
+		router.Run(":8000")
+	}()
+
+	// Run the metrics router on a different port, e.g., 8080
+	metricsRouter.Run(":8080")
 }
