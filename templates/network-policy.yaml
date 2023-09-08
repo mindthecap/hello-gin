@@ -8,7 +8,7 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-    {{- include "hello-gin.selectorLabels" . | nindent 4 }}
+    {{- include "hello-gin.selectorLabels" . | nindent 6 }}
   policyTypes:
     - Ingress
   ingress:
@@ -19,7 +19,7 @@ spec:
     - from:
       - namespaceSelector:
           matchLabels:
-            kubernetes.io/metadata.name: Default
+            kubernetes.io/metadata.name: default
       - podSelector:
           matchLabels:
             app.kubernetes.io/instance: shared
