@@ -1,0 +1,27 @@
+{{- if .Values.networkPolicy.enabled -}}
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ include "hello-gin.fullname" . }}
+  labels:
+    {{- include "hello-gin.labels" . | nindent 4 }}
+spec:
+  podSelector:
+    matchLabels:
+    {{- include "hello-gin.selectorLabels" . | nindent 4 }}
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            app.kubernetes.io/name: prometheus # Allow from monitoring
+    - from:
+      - namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: Default
+      - podSelector:
+          matchLabels:
+            app.kubernetes.io/instance: shared
+            app.kubernetes.io/name: traefik
+{{- end }}
